@@ -12,10 +12,20 @@ describe('GWP Bulme', () => {
     await driver.quit();
   });
 
-  test('Seite hat einen Titel', async () => {
+  test('Im Header ist GWP enthalten.', async () => {
     await driver.get('https://gwp.bulme.at/index.php?view=user');
 
-    const title = await driver.findElements(By.css('title'));
-    expect(title.length).toBeGreaterThan(0);
+    const title = await driver.findElement(By.css('header'));
+    const title_text = await title.getText(); 
+    expect(title_text).toContain('GWP');
   });
+
+  test('Seite ist über den Footer als BULME-Seite identifizierbar.', async () => {
+    await driver.get('https://gwp.bulme.at/index.php?view=user');
+
+    const footer = await driver.findElement(By.css('footer'));
+    const footer_text = await footer.getText(); 
+
+    expect(footer_text).toContain('BULME');
+  })
 });
