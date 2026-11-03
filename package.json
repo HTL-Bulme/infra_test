@@ -4,13 +4,15 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "test": "jest --detectOpenHandles --forceExit",
-    "test:headed": "HEADLESS=false jest --detectOpenHandles --forceExit"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles --forceExit",
+    "test:headed": "HEADLESS=false NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles --forceExit"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "jest": "^30.5.2",
     "selenium-webdriver": "^4.52.0"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true
   }
 }
