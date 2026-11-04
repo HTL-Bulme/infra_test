@@ -33,7 +33,7 @@ describe('GWP Bulme', () => {
     expect(footer_text).toContain('BULME');
   }, 30000);
 
-  test('Login', async () => {
+  test('Login and verification of site afterwards', async () => {
     await driver.get('https://gwp.bulme.at/');
 
     const username_input = await driver.findElement(By.id('box_username'));
@@ -41,7 +41,7 @@ describe('GWP Bulme', () => {
     // before Testing:
     // export STUDENT_USER='mymail@mal.com'
     // export STUDENT_PASS='your_password'
-    // npm run test:headed
+    // npm run test
     await username_input.sendKeys(process.env.STUDENT_USER);
 
     const password_input = await driver.findElement(By.id('box_password'));
