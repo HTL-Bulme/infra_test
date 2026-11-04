@@ -3,13 +3,6 @@ const { createDriver } = require('./driverFactory');
 
 const timeout = 30000;
 
-const SEL = {
-    user: By.id('rcmloginuser'),
-    pass: By.id('rcmloginpwd'),
-    submit: By.id('rcmloginsubmit'),
-    loggedIn: By.css('a.logout, #layout'),
-    };
-
     describe('schueler.bulme.at (Jest + Selenium + Firefox)', () => {
     let driver;
 
