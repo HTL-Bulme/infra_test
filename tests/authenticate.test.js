@@ -4,14 +4,15 @@ const { createDriver } = require('./driverFactory.js');
 const studentUser = process.env.STUDENT_USER;
 const studentPass = process.env.STUDENT_PASS;
 
-// Setzt das Timeout für alle Tests in dieser Datei auf 30 Sekunden
+// Set timeout for all tests to 30 seconds
 jest.setTimeout(30000); 
 
 describe('First script', function () {
   let driver;
 
   beforeAll(async function () {
-    driver = await new Builder().forBrowser('firefox').build();
+    // driver = await new Builder().forBrowser('firefox').build();
+    driver = await createDriver(); // use driver from driverFactory.js
   });
 
   it('should lead to the Microsoft login page', async function () {
