@@ -1,4 +1,4 @@
-import { By } from 'selenium-webdriver';
+import { By, until } from 'selenium-webdriver';
 import { createDriver } from './driverFactory.js';
 
 describe('GWP Bulme', () => {
@@ -26,6 +26,20 @@ describe('GWP Bulme', () => {
     const header_text = await header_elem.getText(); 
 
     expect(header_text).toContain('Schnuppertage');
+  });
+
+  test('Anmelde Button funktoniert und leitet weiter', async () => {
+    await driver.get('https://tools.bulme.at/');
+
+    const btn = await driver.findElement(By.css('.btn-ok')); 
+    await btn.click();
+
+    await driver.wait(until.stalenessOf(btn), 5000);
+
+    const header_elem = await driver.findElement(By.css('label[for="slot"]'));
+    const header_text = await header_elem.getText();
+
+    expect(header_text).toContain('Wunschtermin');
   });
 
 });
