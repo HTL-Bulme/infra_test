@@ -4,6 +4,8 @@ import { createDriver } from './driverFactory.js';
 // Run tests: 
 // npm run test:headed -> Opens and shows browser window while testing
 // npm run test -> Does everything "hidden"
+// Run only this file: 
+// npm run test -- tests/gwp.tests.js
 
 describe('GWP Bulme', () => {
   let driver;
@@ -58,4 +60,5 @@ describe('GWP Bulme', () => {
 
     expect(schuljahr_label_text).toContain('Schuljahr');
   }, 30000);
+  
 });
