@@ -4,9 +4,9 @@ const firefox = require('selenium-webdriver/firefox');
 async function createDriver() {
   const options = new firefox.Options();
 
-  if (process.env.HEADLESS !== 'false') {
+  const isHeadless = (process.env.HEADLESS !== 'false')
+  if (isHeadless) {
     options.addArguments('-headless');
-
     options.windowSize({ width: 1920, height: 1080 });
   }
 
