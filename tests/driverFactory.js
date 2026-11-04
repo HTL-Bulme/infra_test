@@ -2,20 +2,18 @@ const { Builder } = require('selenium-webdriver');
 const firefox = require('selenium-webdriver/firefox');
 
 async function createDriver() {
-  let options = new firefox.Options();
-  const isHeadless = process.env.HEADLESS !== 'false';
+  const options = new firefox.Options();
 
-  if (isHeadless) {
+  if (process.env.HEADLESS !== 'false') {
     options.addArguments('-headless');
-    // may prevent rendering bugs
-    options.addArguments('--width=1920');
-    options.addArguments('--height=1080');
+
+    options.windowSize({ width: 1920, height: 1080 });
   }
 
-  let driver = await new Builder()
-    .forBrowser('firefox')
-    .setFirefoxOptions(options)
-    .build();
+  const driver = await new Builder()
+  .forBrowser('firefox')
+  .setFirefoxOptions(options)
+  .build();
 
   return driver;
 }
