@@ -47,17 +47,27 @@ describe('Boodle Login Tests', () => {
 
   test('should load the Login Page', async () => {
 
-    const header = await driver.findElement(By.id('logoimage'));
-    const ptext = await header.getText();
-    expect(ptext).toBe('');
+    const image = await driver.findElement(By.id('logoimage'));
+    const pic_link = await image.getText();
+    expect(pic_link).toBe('https://moodle.bulme.at/pluginfile.php/1/theme_boo…_union/logo/0x200/1793961534/BULME_LOGO_Black.png');
 
   });
 
-  test('should enter username and password on Login', async () => {
+  test('should enter the Username and Password into the boxes', async () => {
+    const inputu = await driver.findElement(By.id('username'));
+    const textu = '$STUDENT_USER';
+    await inputu.sendKeys(textu);
 
-    const header = await driver.findElement(By.id('logoimage'));
-    const ptext = await header.getText();
-    expect(ptext).toBe('');
+    const inputp = await driver.findElement(By.id('password'));
+    const textp = '$STUDENT_PASS';
+    await inputp.sendKeys(textp);
+
+    const button = await driver.findElement(By.id('loginbtn'));
+    await button.click();
+
+    // Wait for the new task item to render
+    const taskItem = await driver.wait(
+      until.urlContains('https://moodle.bulme.at/my/'), 5000);
 
   });
 });
